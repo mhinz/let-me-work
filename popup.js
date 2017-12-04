@@ -1,6 +1,8 @@
 function addToStorage(pattern) {
   chrome.storage.sync.get('blacklist', items => {
-    if (typeof items.blacklist !== 'undefined') {
+    if (typeof items.blacklist === 'undefined') {
+      chrome.storage.sync.set({blacklist: [pattern]});
+    } else {
       items.blacklist.splice(0, 0, pattern);
       items.blacklist.sort;
       chrome.storage.sync.set({blacklist: items.blacklist});
@@ -8,10 +10,10 @@ function addToStorage(pattern) {
   });
 }
 
-function removeFromStorage(blacklist, pattern) {
+function removeFromStorage(pattern) {
   chrome.storage.sync.get('blacklist', items => {
     chrome.storage.sync.set({
-      blacklist: items.blacklist.filter(e => e !== pattern),
+      blacklist: items.blacklist.filter(e => e !== pattern)
     });
   });
 }

@@ -5,5 +5,11 @@
   "background": {
     "scripts": ["background.js"]
   },
-  "permissions": ["tabs"]
+  "browser_action": {
+    "default_popup": "popup.html"
+  },
+  "permissions": [
+    "storage",
+    "tabs"
+  ]
 }

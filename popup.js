@@ -35,10 +35,11 @@ function removeFromPopup(pattern) {
 
 function addRow(pattern) {
   let row = document.createElement('tr');
-  // let row = table.insertRow(i);
+
   let cell = row.insertCell(0);
   cell.width = '100%';
   cell.innerHTML = pattern;
+
   let button = document.createElement('button');
   button.innerHTML = 'dump';
   button.addEventListener('click', () => {
@@ -50,20 +51,9 @@ function addRow(pattern) {
   return row;
 }
 
-function createBlacklist() {
-  let table = document.createElement('table');
-  chrome.storage.sync.get('blacklist', items => {
-    if (typeof items.blacklist !== 'undefined') {
-      for (let i = 0; i < items.blacklist.length; i++) {
-        table.appendChild(addRow(items.blacklist[i]));
-      }
-    }
-  });
-  return table;
-}
+function setupInput() {
+  let input = document.getElementsByTagName('input')[0];
 
-document.addEventListener('DOMContentLoaded', () => {
-  let input = document.createElement('input');
   input.addEventListener('keydown', event => {
     if (event.keyCode === 13) {
       addToStorage(input.value);
@@ -71,6 +61,21 @@ document.addEventListener('DOMContentLoaded', () => {
       input.value = '';
     }
   });
-  document.body.appendChild(input);
-  document.body.appendChild(createBlacklist());
+}
+
+function setupBlacklist() {
+  let table = document.getElementsByTagName('table')[0];
+
+  chrome.storage.sync.get('blacklist', items => {
+    if (typeof items.blacklist !== 'undefined') {
+      for (let i = 0; i < items.blacklist.length; i++) {
+        table.appendChild(addRow(items.blacklist[i]));
+      }
+    }
+  });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  setupInput();
+  setupBlacklist();
 });

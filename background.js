@@ -2,7 +2,9 @@ let pattern = undefined;
 
 function recompilePattern() {
   chrome.storage.sync.get('blacklist', items => {
-    if (typeof items.blacklist !== 'undefined') {
+    if (typeof items.blacklist === 'undefined' || items.blacklist.length === 0) {
+      pattern = undefined;
+    } else {
       pattern = new RegExp(items.blacklist.join('|'));
     }
   });

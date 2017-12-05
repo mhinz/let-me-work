@@ -55,6 +55,9 @@ function addRow(pattern) {
 
 function setupInput() {
   let input = document.getElementsByTagName('input')[0];
+  chrome.tabs.query({active: true, currentWindow: true}, tabs => {
+    input.value = tabs[0].url;
+  });
 
   input.addEventListener('keydown', event => {
     if (event.keyCode === 13) {

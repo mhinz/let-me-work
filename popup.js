@@ -8,6 +8,7 @@ function addToStorage(pattern) {
       chrome.storage.sync.set({blacklist: items.blacklist});
     }
   });
+  chrome.runtime.sendMessage('recompile');
 }
 
 function removeFromStorage(pattern) {
@@ -16,6 +17,7 @@ function removeFromStorage(pattern) {
       blacklist: items.blacklist.filter(e => e !== pattern)
     });
   });
+  chrome.runtime.sendMessage('recompile');
 }
 
 function addToPopup(pattern) {

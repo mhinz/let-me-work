@@ -10,6 +10,11 @@ That's all.
 
 ![screenshot](screenshot.png)
 
+## Why?
+
+I use this to get out of the habit of visiting websites that are known to be
+time sinks, e.g. Twitter.
+
 ## Installation
 
 1. Clone this repo to your local drive.

@@ -1,5 +1,3 @@
-let pattern = undefined;
-
 function recompilePattern() {
   chrome.storage.sync.get('blacklist', items => {
     if (typeof items.blacklist === 'undefined' || items.blacklist.length === 0) {

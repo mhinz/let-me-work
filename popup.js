@@ -4,7 +4,7 @@ function addToStorage(pattern) {
       chrome.storage.sync.set({blacklist: [pattern]});
     } else {
       items.blacklist.splice(0, 0, pattern);
-      items.blacklist.sort;
+      items.blacklist.sort();
       chrome.storage.sync.set({blacklist: items.blacklist});
     }
   });

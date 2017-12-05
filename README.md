@@ -8,6 +8,8 @@ that tells you to focus!
 
 That's all.
 
+![screenshot](screenshot.png)
+
 ## Installation
 
 1. Clone this repo to your local drive.

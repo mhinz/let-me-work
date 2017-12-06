@@ -16,10 +16,10 @@ chrome.runtime.onMessage.addListener((req, sender, sendReponse) => {
   }
 });
 
-chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
-  let validURL = typeof changeInfo.url !== 'undefined';
+chrome.webNavigation.onBeforeNavigate.addListener(details => {
+  let validURL = typeof details.url !== 'undefined';
   let validPattern = typeof pattern !== 'undefined';
-  if (validURL && validPattern && pattern.test(changeInfo.url)) {
-    chrome.tabs.update(tabId, {url: 'focus.html'});
+  if (validURL && validPattern && pattern.test(details.url)) {
+    chrome.tabs.update(details.tabId, {url: 'focus.html'});
   }
 });

@@ -73,8 +73,8 @@ function setupBlacklist() {
 
   chrome.storage.sync.get('blacklist', items => {
     if (typeof items.blacklist !== 'undefined') {
-      for (let i = 0; i < items.blacklist.length; i++) {
-        table.appendChild(addRow(items.blacklist[i]));
+      for (const pattern of items.blacklist) {
+        table.appendChild(addRow(pattern));
       }
     }
   });
